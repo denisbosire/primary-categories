@@ -3,7 +3,7 @@
 run 'npm install'
 then 'npn star'
 
-I decided to use JS to build this feature, another way would have been to register the metabox in php then use ajax to pull the data, I decided to use REST API anyways.
+I decided to use JS to build this plugin, another way would have been to register the metabox in php then use ajax to get the data, then use 'update_post_meta', I decided to use REST API anyways.
 
 ## Primary Category Block
 This block displays posts from a primary category, improvements to be made, add an inspector control for chosing which primary category to display, add support for custom post types another block.
@@ -17,7 +17,7 @@ To create a template and display these posts use the code below
 			'meta_query' => array(
 				array(
 					'key' => '_primary_category',
-					'value' => array(1,2,3,4),
+					'value' => array(1,2,3,4), //primary category shares the same ID as the category
 					'compare' => 'IN', // optional
 				),
 			),
@@ -31,3 +31,8 @@ To create a template and display these posts use the code below
 				echo $html;
 			}
 		}
+
+## How to test
+Create a post, add several categories & save.
+Refresh the page & now you can select a primary category.
+This is saved in metabox with the ID _primary_category
