@@ -27,9 +27,7 @@ PluginMetaFields = withSelect(
 	( select ) => {
 		return {
 			//postType: select('core/editor').getCurrentPostType(),
-			if( select('core/editor').getCurrentPostType() === 'post' ) {
-				primaryCategory: select( 'core/editor' ).getEditedPostAttribute( 'meta' )._primary_category,
-			}
+			primaryCategory: select( 'core/editor' ).getEditedPostAttribute( 'meta' )._primary_category,
 			categories: select( 'core' ).getEntityRecords( 'taxonomy', 'category', { post: select( 'core/editor' ).getCurrentPostId() } ),
 		};
 	}
