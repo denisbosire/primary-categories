@@ -1,7 +1,8 @@
 # primary-categories
  
 run 'npm install'
-then 'npn star'
+
+then 'npn start'
 
 I decided to use JS to build this plugin, another way would have been to register the metabox in php then use ajax to get the data, then use 'update_post_meta', I decided to use REST API anyways.
 
@@ -36,3 +37,6 @@ To create a template and display these posts use the code below
 Create a post, add several categories & save.
 Refresh the page & now you can select a primary category.
 This is saved in metabox with the ID _primary_category
+
+##Possible improvements:
+I'm aware that there are several improvements I could make, for instance, add an inspector control to select which primary category to display in the post block, number of posts etc.
