@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { SelectControl } from '@wordpress/components';
 import { withSelect, withDispatch } from '@wordpress/data';
 
+
 let PluginMetaFields = ( props, setAtrributes ) => {
 	return (
 		<fragment>
@@ -25,7 +26,10 @@ let PluginMetaFields = ( props, setAtrributes ) => {
 PluginMetaFields = withSelect(
 	( select ) => {
 		return {
-			primaryCategory: select( 'core/editor' ).getEditedPostAttribute( 'meta' )._primary_category,
+			//postType: select('core/editor').getCurrentPostType(),
+			if( select('core/editor').getCurrentPostType() === 'post' ) {
+				primaryCategory: select( 'core/editor' ).getEditedPostAttribute( 'meta' )._primary_category,
+			}
 			categories: select( 'core' ).getEntityRecords( 'taxonomy', 'category', { post: select( 'core/editor' ).getCurrentPostId() } ),
 		};
 	}
@@ -51,9 +55,9 @@ PluginMetaFields = withDispatch(
  */
 const PrimaryCategoriesDemo = () => (
 	<PluginDocumentSettingPanel
-		name="custom-panel"
+		name="primary-category-panel"
 		title="Primary Category"
-		className="custom-panel"
+		className="primary-category-panel"
 	>
 		{ PluginMetaFields }
 	</PluginDocumentSettingPanel>

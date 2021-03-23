@@ -110,7 +110,7 @@ function myprefix_add_meta_box() {
         'myprefix_post_options_metabox', 
         'Post Options', 
         'myprefix_post_options_metabox_html', 
-        'hotel', 
+        'post', //remember to add CPT support
         'normal', 
         'default',
         array('__back_compat_meta_box' => true)
