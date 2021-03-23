@@ -12,6 +12,7 @@ You can view the code in src/block/sidebar.js
 
 ## Show posts in primary category
 I've created a shortcode (I know it's 2021) to display posts in primary category. Here's the shortcode [primaryposts].
+
 To create a template and display these posts use the code below
 
 		$args = array(
@@ -38,5 +39,5 @@ Create a post, add several categories & save.
 Refresh the page & now you can select a primary category.
 This is saved in metabox with the ID _primary_category
 
-##Possible improvements:
+## Possible improvements:
 I'm aware that there are several improvements I could make, for instance, add an inspector control to select which primary category to display in the post block, number of posts etc.
