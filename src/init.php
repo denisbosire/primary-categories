@@ -82,6 +82,8 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 			'editor_script' => 'primary_categories-cgb-block-js',
 			// Enqueue blocks.editor.build.css in the editor only.
 			'editor_style'  => 'primary_categories-cgb-block-editor-css',
+			//use Callback for dynamic block
+			'render_callback' => 'primary_posts',
 		)
 	);
 }
@@ -108,7 +110,7 @@ function myprefix_add_meta_box() {
         'myprefix_post_options_metabox', 
         'Post Options', 
         'myprefix_post_options_metabox_html', 
-        'post', 
+        'hotel', 
         'normal', 
         'default',
         array('__back_compat_meta_box' => true)
@@ -123,7 +125,7 @@ add_filter( 'rest_post_query', function( $args, $request ){
     return $args;
 }, 10, 2 );
 
-//Show posts with primary category
+//Create shortcode to show posts with primary category
 function primary_posts(){
 	$args = array(
 		'meta_query' => array(
