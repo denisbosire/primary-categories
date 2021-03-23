@@ -1,7 +1,8 @@
 # primary-categories
  
 run 'npm install'
-then 'npn star'
+
+then 'npn start'
 
 I decided to use JS to build this plugin, another way would have been to register the metabox in php then use ajax to get the data, then use 'update_post_meta', I decided to use REST API anyways.
 
