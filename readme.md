@@ -37,7 +37,11 @@ To create a template and display these posts use the code below
 ## How to test
 Create a post, add several categories & save.
 Refresh the page & now you can select a primary category.
+
 This is saved in metabox with the ID _primary_category
+
+To test on custom post type, make sure you've added support for 'custom-fields' or you'll get errors.
+
 
 ## Possible improvements:
 I'm aware that there are several improvements I could make, for instance, add an inspector control to select which primary category to display in the post block, number of posts etc.
