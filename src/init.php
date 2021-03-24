@@ -63,6 +63,7 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 	$data = $wpdb->get_results($wpdb->prepare( "SELECT DISTINCT meta_value FROM $wpdb->postmeta WHERE meta_key = %s", $meta_key) , ARRAY_N  );
 
 	$result = [];
+	$metaVar = [];
 	foreach($data as $key => $value){
 		$metaVar[] = $value[0];	
 	}
@@ -114,7 +115,7 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 			'render_callback' => 'primary_posts',
 			'attributes'      => array(
 				'newCategory' => array(
-					'type' => 'string',
+					'type' => 'number',
 					'default' => '',
 				),
 			)
@@ -158,22 +159,21 @@ function primary_posts($attributes){
 	$args = array(
 		'post_type' => 'post',
 		'meta_query' => array(
+			//'relation' => 'AND',
 			array(
 				'key' => '_primary_category',
-				'value' => array($primaryCat),
+				'value' => array($primaryCat)),
 				'compare' => 'IN', // optional
 			),
 		),
 	);
 	$myQuery = new WP_Query($args);
 	$html = '';
-	if ($myQuery->have_posts()) {
-		while ($myQuery->have_posts()) {
-			$myQuery->the_post();
-			$html .= '<li class="post-item"><a href='.get_the_permalink().'>'.get_the_title().'</a></li>';
+	if ($myQuery->have_posts()) :
+		while ($myQuery->have_posts()) : $myQuery->the_post();
+			echo '<li class="post-item"><a href='.get_the_permalink().'>'.get_the_title().'</a></li>';
 			
-		}
-	}
-	return $html;
+		endwhile;
+	endif;
+	//return $html;
 }
-add_shortcode( 'primaryposts', 'primary_posts' );
