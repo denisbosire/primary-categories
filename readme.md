@@ -11,6 +11,8 @@ This block displays posts from a primary category, added a SelectControl in the 
 
 I fetched the meta value, then cross referenced them with categories, then used wp_localize to send the data to JS. I needed to acces the WP_Terms object.
 
+This is a dynamic block
+
 ## Show posts in primary category
 ~~I've created a shortcode (I know it's 2021) to display posts in primary category. Here's the shortcode [primaryposts].~~
 
