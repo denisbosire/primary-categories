@@ -48,7 +48,7 @@ class primaryPosts extends Component {
 								label={ __( 'Categories' ) }
 								onChange={ onChangeCategories }
 								options={ filteredCategories && filteredCategories.map( category => ( { value: category.term_id, label: category.name } ) ) }
-								value= { newCategory }
+								value={ newCategory }
 							/>
 						</PanelRow>
 					</PanelBody>
@@ -58,7 +58,7 @@ class primaryPosts extends Component {
 		);
 	}
 }
-{ console.log( cgbGlobal.myVar ); }
+
 export default withSelect(
 	( select, props ) => {
 		const { attributes } = props;
@@ -66,11 +66,8 @@ export default withSelect(
 		return {
 
 			posts: select( 'core' ).getEntityRecords( 'postType', 'post', {
-				categories: newCategory
-			}),
-			// Custom args.
-			metaKey: select( 'core/editor' ).getEditedPostAttribute( 'meta' )._primary_category, // filter by metadata
-			//categories: select( 'core' ).getEntityRecords( 'taxonomy', 'category' ),
+				categories: newCategory,
+			} ),
 
 		};
 	}

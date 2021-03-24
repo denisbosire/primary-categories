@@ -151,25 +151,17 @@ function myprefix_add_meta_box() {
     );
 }
 
-add_filter( 'rest_post_query', function( $args, $request ){
-    if ( $meta_key = $request->get_param( 'metaKey' ) ) {
-        $args['meta_key'] = $meta_key;
-        $args['meta_value'] = $request->get_param( 'metaValue' );
-    }
-    return $args;
-}, 10, 2 );
 
 //Create shortcode to show posts with primary category
 function primary_posts($attributes){
 	$primaryCat = $attributes['newCategory'];
-	var_dump($primaryCat);
 	$args = array(
 		'post_type' => 'post',
 		'meta_query' => array(
 			array(
 				'key' => '_primary_category',
-				'value' => array('2'),
-				//'compare' => 'IN', // optional
+				'value' => array($primaryCat),
+				'compare' => 'IN', // optional
 			),
 		),
 	);
