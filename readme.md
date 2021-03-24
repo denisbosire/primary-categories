@@ -6,7 +6,7 @@ then 'npn start'
 
 I decided to use JS to build this plugin, another way would have been to register the metabox in php then use ajax to get the data, then use 'update_post_meta', I decided to use REST API.
 
-## Primary Category Block
+## Primary Category Posts Block
 This block displays posts from a primary category, added a SelectControl in the InspectoControl to select the primary category to be displayed.
 
 I fetched the meta value, then cross referenced them with categories, then used wp_localize to send the data to JS. I needed to acces the WP_Terms object.
