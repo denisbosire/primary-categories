@@ -115,6 +115,7 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 			'attributes'      => array(
 				'newCategory' => array(
 					'type' => 'string',
+					'default' => '',
 				),
 			)
 		)
@@ -161,12 +162,13 @@ add_filter( 'rest_post_query', function( $args, $request ){
 //Create shortcode to show posts with primary category
 function primary_posts($attributes){
 	$primaryCat = $attributes['newCategory'];
-	//var_dump($primaryCat);
+	var_dump($primaryCat);
 	$args = array(
+		'post_type' => 'post',
 		'meta_query' => array(
 			array(
 				'key' => '_primary_category',
-				'value' => array($primaryCat),
+				'value' => array('2'),
 				//'compare' => 'IN', // optional
 			),
 		),
@@ -177,8 +179,9 @@ function primary_posts($attributes){
 		while ($myQuery->have_posts()) {
 			$myQuery->the_post();
 			$html .= '<li class="post-item"><a href='.get_the_permalink().'>'.get_the_title().'</a></li>';
-			return $html;
+			
 		}
 	}
+	return $html;
 }
 add_shortcode( 'primaryposts', 'primary_posts' );
