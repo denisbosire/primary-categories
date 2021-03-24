@@ -67,19 +67,15 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 		$metaVar[] = $value[0];
 		
 	}
-	$myVars = $metaVar;
 	
-	$splitVars = implode(",",$myVars);
-	//echo $splitVars;
-	//var_export($splitVars);
+	$splitVars = implode(",",$metaVar);
 
 	$output_categories = array();
 	$output_categories = get_categories(array(
 		'orderby' => 'name',
-		'include' => array( 5,4,6))
+		'include' => array( $splitVars ),
+	)
 	);
-
-	global $myVars;
 	$myVars = $output_categories;
 
 	

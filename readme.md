@@ -11,7 +11,8 @@ This block displays posts from a primary category, improvements to be made, add 
 You can view the code in src/block/sidebar.js
 
 ## Show posts in primary category
-I've created a shortcode (I know it's 2021) to display posts in primary category. Here's the shortcode [primaryposts].
+~~ I've created a shortcode (I know it's 2021) to display posts in primary category. Here's the shortcode [primaryposts]. ~~
+The Primary Category Posts block now supports category selection. You no longer need the shortcode.
 
 To create a template and display these posts use the code below
 
