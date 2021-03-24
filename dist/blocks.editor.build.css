@@ -20,3 +20,6 @@
 
 .primary-category-panel .components-base-control {
   padding: 10px 20px; }
+
+.block-editor-block-inspector .components-base-control {
+  width: 100%; }

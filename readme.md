@@ -21,12 +21,12 @@ The Primary Category Posts block now supports category selection. You no longer 
 
 
 ## How to test
-Create a post, add several categories & save.
-Refresh the page & now you can select a primary category.
+Create multiple posts, add several categories & save.
+Refresh the page & now you can select a primary category, add this to the posts just created.
 
 This is saved in meta key _primary_category
 
-To test on custom post type, make sure you've added support for 'custom-fields' or you'll get errors.
+To test on custom post type, make sure you've added support for 'custom-fields' or you'll get errors. (primary posts block doesn't work with this yet)
 
 
 ## Possible improvements:

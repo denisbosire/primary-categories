@@ -73,7 +73,7 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 	$output_categories = array();
 	$output_categories = get_categories(array(
 		'orderby' => 'name',
-		'include' => $splitVars,
+		'include' => join(',', array($splitVars)),
 	)
 	);
 	$myVars = $output_categories;
@@ -162,7 +162,7 @@ function primary_posts($attributes){
 			//'relation' => 'AND',
 			array(
 				'key' => '_primary_category',
-				'value' => array($primaryCat),
+				'value' => join(',', array($primaryCat)),
 				'compare' => 'IN', // optional
 			),
 		),
@@ -171,9 +171,9 @@ function primary_posts($attributes){
 	$html = '';
 	if ($myQuery->have_posts()) :
 		while ($myQuery->have_posts()) : $myQuery->the_post();
-			echo '<li class="post-item"><a href='.get_the_permalink().'>'.get_the_title().'</a></li>';
+			$html .= '<li class="post-item"><a href='.get_the_permalink().'>'.get_the_title().'</a></li>';
 			
 		endwhile;
 	endif;
-	//return $html;
+	return $html;
 }

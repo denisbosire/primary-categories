@@ -12,6 +12,11 @@ class primaryPosts extends Component {
 		const { posts, attributes, setAttributes } = this.props;
 		const { newCategory } = attributes;
 		const filteredCategories = cgbGlobal.myVar;
+		let getFilteredCats = () => {
+			return (
+				filteredCategories && filteredCategories.map( category => ( { value: category.term_id, label: category.name } ) )
+			);
+		};
 		const onChangeCategories = ( newCategory ) => {
 			setAttributes( { newCategory } );
 		};
@@ -45,9 +50,10 @@ class primaryPosts extends Component {
 					<PanelBody title="Select Primary Category" initialOpen={ true }>
 						<PanelRow>
 							<SelectControl
+
 								label={ __( 'Categories' ) }
 								onChange={ onChangeCategories }
-								options={ filteredCategories && filteredCategories.map( category => ( { value: category.term_id, label: category.name } ) ) }
+								options={ filteredCategories && filteredCategories.map( category => ( { value: category.term_id, label: category.name } ) )}
 								value={ newCategory }
 							/>
 						</PanelRow>
