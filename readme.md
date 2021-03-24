@@ -33,3 +33,5 @@ To test on custom post type, make sure you've added support for 'custom-fields' 
 ~~I'm aware that there are several improvements I could make, for instance, add an inspector control to select which primary category to display in the post block, number of posts etc.~~
 
 Perhaps add a custom post type selector to support CPTs.
+
+Add CSS styles
