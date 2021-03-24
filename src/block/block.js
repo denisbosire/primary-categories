@@ -38,7 +38,7 @@ registerBlockType( 'pc/primary-posts', {
 	attributes: {
 		newCategory: {
 			type: 'string',
-		}
+		},
 	},
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.

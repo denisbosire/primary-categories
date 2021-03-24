@@ -64,16 +64,15 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 
 	$result = [];
 	foreach($data as $key => $value){
-		$metaVar[] = $value[0];
-		
+		$metaVar[] = $value[0];	
 	}
-	
-	$splitVars = implode(",",$metaVar);
-
+	$splitVars = [];
+	$splitVars = implode(',',$metaVar);
+	//print_r($splitVars);
 	$output_categories = array();
 	$output_categories = get_categories(array(
 		'orderby' => 'name',
-		'include' => array( $splitVars ),
+		'include' => $splitVars,
 	)
 	);
 	$myVars = $output_categories;
