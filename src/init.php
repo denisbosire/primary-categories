@@ -52,7 +52,39 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
 	);
+	
+	/*
+	* Get _primary_categories, get categories, then only show categories that are also primary categories
+	*/
+	
+	global $wpdb;
+	$meta_key = '_primary_category';
 
+	$data = $wpdb->get_results($wpdb->prepare( "SELECT DISTINCT meta_value FROM $wpdb->postmeta WHERE meta_key = %s", $meta_key) , ARRAY_N  );
+
+	$result = [];
+	foreach($data as $key => $value){
+		$metaVar[] = $value[0];
+		
+	}
+	$myVars = $metaVar;
+	
+	$splitVars = implode(",",$myVars);
+	//echo $splitVars;
+	//var_export($splitVars);
+
+	$output_categories = array();
+	$output_categories = get_categories(array(
+		'orderby' => 'name',
+		'include' => array( 5,4,6))
+	);
+
+	global $myVars;
+	$myVars = $output_categories;
+
+	
+
+		
 	// WP Localized globals. Use dynamic PHP stuff in JavaScript via `cgbGlobal` object.
 	wp_localize_script(
 		'primary_categories-cgb-block-js',
@@ -60,6 +92,7 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 		[
 			'pluginDirPath' => plugin_dir_path( __DIR__ ),
 			'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
+			'myVar' => $myVars,
 			// Add more data here that you want to access from `cgbGlobal` object.
 		]
 	);
@@ -84,6 +117,11 @@ function primary_categories_cgb_block_assets() { // phpcs:ignore
 			'editor_style'  => 'primary_categories-cgb-block-editor-css',
 			//use Callback for dynamic block
 			'render_callback' => 'primary_posts',
+			'attributes'      => array(
+				'newCategory' => array(
+					'type' => 'string',
+				),
+			)
 		)
 	);
 }
@@ -126,23 +164,25 @@ add_filter( 'rest_post_query', function( $args, $request ){
 }, 10, 2 );
 
 //Create shortcode to show posts with primary category
-function primary_posts(){
+function primary_posts($attributes){
+	$primaryCat = $attributes['newCategory'];
+	//var_dump($primaryCat);
 	$args = array(
 		'meta_query' => array(
 			array(
 				'key' => '_primary_category',
-				'value' => array(1,2,3,4),
-				'compare' => 'IN', // optional
+				'value' => array($primaryCat),
+				//'compare' => 'IN', // optional
 			),
 		),
 	);
 	$myQuery = new WP_Query($args);
-
+	$html = '';
 	if ($myQuery->have_posts()) {
 		while ($myQuery->have_posts()) {
 			$myQuery->the_post();
 			$html .= '<li class="post-item"><a href='.get_the_permalink().'>'.get_the_title().'</a></li>';
-			echo $html;
+			return $html;
 		}
 	}
 }

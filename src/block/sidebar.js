@@ -1,19 +1,21 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 import { __ } from '@wordpress/i18n';
-import { SelectControl } from '@wordpress/components';
+import { PanelBody, PanelRow, Disabled, SelectControl } from '@wordpress/components';
 import { withSelect, withDispatch } from '@wordpress/data';
-
+import { InspectorControls } from '@wordpress/block-editor';
 
 let PluginMetaFields = ( props, setAtrributes ) => {
 	return (
 		<fragment>
+
 			<SelectControl
 				label={ __( 'Select Primary Category' ) }
 				onChange={ ( value ) => props.onMetaFieldChange( value ) }
 				options={ props.categories && props.categories.map( category => ( { value: category.id, label: category.name } ) ) }
 				value={ props.primaryCategory }
 			/>
+
 		</fragment>
 	);
 };
@@ -27,7 +29,7 @@ PluginMetaFields = withSelect(
 	( select ) => {
 		return {
 			//postType: select('core/editor').getCurrentPostType(),
-			
+
 			primaryCategory: select( 'core/editor' ).getEditedPostAttribute( 'meta' )._primary_category,
 			categories: select( 'core' ).getEntityRecords( 'taxonomy', 'category', { post: select( 'core/editor' ).getCurrentPostId() } ),
 		};
