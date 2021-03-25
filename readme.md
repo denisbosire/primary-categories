@@ -32,6 +32,7 @@ To test on custom post type, make sure you've added support for 'custom-fields' 
 ## Possible improvements:
 ~~I'm aware that there are several improvements I could make, for instance, add an inspector control to select which primary category to display in the post block, number of posts etc.~~
 
+Add a disabled option on the category selector, currently only works if you have more than two primary categories to choose from
 Perhaps add a custom post type selector to support CPTs.
 
 Add CSS styles
