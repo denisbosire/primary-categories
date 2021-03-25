@@ -162,7 +162,7 @@ function primary_posts($attributes){
 			//'relation' => 'AND',
 			array(
 				'key' => '_primary_category',
-				'value' => join(',', array($primaryCat)),
+				'value' => array($primaryCat),
 				'compare' => 'IN', // optional
 			),
 		),
